@@ -1,40 +1,24 @@
 import 'package:flutter/material.dart';
 
 class ScrollSheetFab extends StatelessWidget {
-  final ScrollController scrollController;
-  final DraggableScrollableController sheetController;
-  final double height;
-  final double topHeight;
+  final Function() onPressed;
 
   const ScrollSheetFab({
     super.key,
-    required this.scrollController,
-    required this.sheetController,
-    required this.height,
-    required this.topHeight,
+    required this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return FloatingActionButton(
-      onPressed: () async {
-        await scrollController.animateTo(
-          0,
-          duration: const Duration(milliseconds: 150),
-          curve: Curves.easeIn,
-        );
-        await sheetController.animateTo(
-          (height - topHeight) / height,
-          duration: const Duration(milliseconds: 150),
-          curve: Curves.easeOut,
-        );
-      },
+      onPressed: onPressed,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
       elevation: 0,
       highlightElevation: 0,
       child: Icon(
         Icons.arrow_upward,
-        color: Colors.black.withOpacity(0.5),
+        color: Colors.black.withValues(alpha: 0.5),
       ),
     );
   }

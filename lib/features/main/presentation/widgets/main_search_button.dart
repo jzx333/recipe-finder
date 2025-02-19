@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/themes/themes.dart';
-
 class MainSearchButton extends StatelessWidget {
-  const MainSearchButton({super.key, required this.borderRadius});
+  const MainSearchButton({super.key});
 
-  final double borderRadius;
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    const borderRadius = 15.0;
     return Container(
       margin: const EdgeInsets.only(
         top: 50.0,
       ),
       decoration: BoxDecoration(
-        color: AppColors.secondaryColor,
+        color: theme.colorScheme.primaryContainer,
         borderRadius: BorderRadius.circular(borderRadius),
       ),
       child: Material(
@@ -28,12 +27,11 @@ class MainSearchButton extends StatelessWidget {
             //);
             print("POISK");
           },
-          child: const Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: 19.0, vertical: 12.0),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 19.0, vertical: 12.0),
             child: Row(
               children: [
-                Opacity(
+                const Opacity(
                   opacity: 0.5,
                   child: Text(
                     'Поиск рецепта...',
@@ -42,10 +40,10 @@ class MainSearchButton extends StatelessWidget {
                     ),
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 Icon(
                   Icons.search,
-                  color: AppColors.primaryColor,
+                  color: theme.primaryColor,
                 ),
               ],
             ),
