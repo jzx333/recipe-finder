@@ -13,7 +13,7 @@ class TopInfo extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 50.0),
       child: Column(
         children: [
-          MainSearchButton(),
+          const MainSearchButton(),
           const SizedBox(height: 8.0),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 12.0),
@@ -33,7 +33,7 @@ class TopInfo extends StatelessWidget {
                 Radius.circular(25.0),
               ),
             ),
-            child: Text("Tags"),
+            child: const Text("Tags"),
           ),
         ],
       ),

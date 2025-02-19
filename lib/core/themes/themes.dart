@@ -19,8 +19,9 @@ ThemeData createLightTheme() {
       primaryContainer: AppColors.white,
     ),
 
-    floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      backgroundColor: AppColors.lightGrayLightGreen
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: AppColors.lightGrayLightGreen,
+      foregroundColor: Colors.black.withValues(alpha: 0.5),
     ),
   );
 }
