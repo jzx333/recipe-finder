@@ -19,11 +19,11 @@ class RecipeList extends StatelessWidget {
   const RecipeList({
     super.key,
     required this.borderRadius,
-    required this.scrollController,
+    this.scrollController,
   });
 
   final double borderRadius;
-  final ScrollController scrollController;
+  final ScrollController? scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,13 @@ class RecipeList extends StatelessWidget {
           top: Radius.circular(borderRadius),
         ),
       ),
-      child: ListView.separated(
+      child: GridView.builder(
+        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 450,
+          crossAxisSpacing: 30,
+          mainAxisSpacing: 30,
+          mainAxisExtent: 280,
+        ),
         padding: EdgeInsets.symmetric(
           vertical: 30,
           horizontal: theme.horizontalPadding,
@@ -45,10 +51,8 @@ class RecipeList extends StatelessWidget {
         itemBuilder: (context, index) {
           return RecipeListTile(
             recipe: recipes[index],
+            index: index,
           );
-        },
-        separatorBuilder: (context, index) {
-          return const SizedBox(height: 30);
         },
       ),
     );

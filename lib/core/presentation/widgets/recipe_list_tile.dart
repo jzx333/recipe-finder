@@ -3,9 +3,10 @@ import 'package:recipe_finder_demo/core/domain/entities/recipe_entity.dart';
 import 'package:recipe_finder_demo/core/presentation/widgets/small_tag.dart';
 
 class RecipeListTile extends StatelessWidget {
-  const RecipeListTile({super.key, required this.recipe});
+  const RecipeListTile({super.key, required this.recipe, required this.index});
 
   final RecipeEntity recipe;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class RecipeListTile extends StatelessWidget {
             "https://prostokvashino.ru/upload/resize_cache/iblock/d62/800_800_0/d6269fa359b8595e632183c2c267c4ec.jpg",
             width: double.infinity,
             height: 200,
-            fit: BoxFit.fill,
+            fit: BoxFit.cover,
           ),
         ),
         const SizedBox(height: 4),
@@ -35,7 +36,7 @@ class RecipeListTile extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    Text("Блины", style: theme.textTheme.titleMedium),
+                    Text("Блины $index", style: theme.textTheme.titleMedium),
                     const SizedBox(width: 10),
                     const SmallTag(text: "Из муки"),
                     const SizedBox(width: 6),
