@@ -1,40 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_finder_demo/core/themes/themes.dart';
 import 'package:recipe_finder_demo/features/main/presentation/widgets/main_search_button.dart';
+import 'package:recipe_finder_demo/features/main/presentation/widgets/main_tag_button.dart';
+import 'package:recipe_finder_demo/features/main/presentation/widgets/tag_list.dart';
 
 class TopInfo extends StatelessWidget {
   const TopInfo({super.key});
 
-  static const height = 170.0;
+  static const height = 280.0;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 50.0),
+      padding: EdgeInsets.symmetric(horizontal: theme.horizontalPadding),
       child: Column(
         children: [
           const MainSearchButton(),
           const SizedBox(height: 8.0),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 12.0),
-            child: Row(
-              children: [
-                Text("Завтрак"),
-                Text("Обед"),
-                Text("Ужин"),
-              ],
-            ),
+          Row(
+            children: [
+              MainTagButton(
+                isSelected: true,
+                onPressed: () {},
+                text: "Завтрак",
+              ),
+              MainTagButton(
+                isSelected: false,
+                onPressed: () {},
+                text: "Обед",
+              ),
+              MainTagButton(
+                isSelected: false,
+                onPressed: () {},
+                text: "Ужин",
+              ),
+            ],
           ),
           const SizedBox(height: 8),
-          Container(
-            decoration: BoxDecoration(
-              color: theme.colorScheme.primaryContainer,
-              borderRadius: const BorderRadius.all(
-                Radius.circular(25.0),
-              ),
-            ),
-            child: const Text("Tags"),
-          ),
+          const TagList()
         ],
       ),
     );

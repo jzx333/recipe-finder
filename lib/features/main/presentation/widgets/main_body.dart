@@ -11,7 +11,7 @@ class MainBody extends StatefulWidget {
 }
 
 class _MainBodyState extends State<MainBody> {
-  double _borderRadius = 20.0;
+  double _borderRadius = 28;
   var _isScrollStart = true;
   late ScrollController _scrollController;
   final DraggableScrollableController _sheetController =

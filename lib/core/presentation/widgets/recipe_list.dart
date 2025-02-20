@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_finder_demo/core/domain/entities/recipe_entity.dart';
 import 'package:recipe_finder_demo/core/presentation/widgets/recipe_list_tile.dart';
+import 'package:recipe_finder_demo/core/themes/themes.dart';
 
 final recipes = [
   const RecipeEntity(name: "blini", tags: ["asdlf", "sldfj"]),
@@ -35,9 +36,9 @@ class RecipeList extends StatelessWidget {
         ),
       ),
       child: ListView.separated(
-        padding: const EdgeInsets.symmetric(
-          vertical: 10,
-          horizontal: 10,
+        padding: EdgeInsets.symmetric(
+          vertical: 30,
+          horizontal: theme.horizontalPadding,
         ),
         controller: scrollController,
         itemCount: recipes.length,
@@ -47,7 +48,7 @@ class RecipeList extends StatelessWidget {
           );
         },
         separatorBuilder: (context, index) {
-          return const SizedBox(height: 10);
+          return const SizedBox(height: 30);
         },
       ),
     );
