@@ -9,14 +9,19 @@ class SmallTag extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 2),
       width: 68,
       height: 22,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         color: theme.primaryColor,
-        borderRadius: BorderRadius.circular(4)
+        borderRadius: BorderRadius.circular(4),
       ),
-      child: Text(text, style: theme.textTheme.bodySmall),
+      child: Text(
+        text,
+        style: theme.textTheme.bodySmall,
+        overflow: TextOverflow.ellipsis,
+      ),
     );
   }
 }

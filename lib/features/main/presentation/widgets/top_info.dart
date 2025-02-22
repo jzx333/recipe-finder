@@ -7,7 +7,7 @@ import 'package:recipe_finder_demo/features/main/presentation/widgets/tag_list.d
 class TopInfo extends StatelessWidget {
   const TopInfo({super.key});
 
-  static const height = 280.0;
+  static const height = 270.0;
 
   @override
   Widget build(BuildContext context) {

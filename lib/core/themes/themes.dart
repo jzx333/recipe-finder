@@ -3,7 +3,6 @@ import 'package:recipe_finder_demo/core/themes/colors.dart';
 
 ThemeData createLightTheme() {
   return ThemeData(
-    useMaterial3: true,
     primaryColor: AppColors.lightGreen,
     scaffoldBackgroundColor: AppColors.lightGreen,
     textTheme: _baseTextTheme(isDark: false),
@@ -24,6 +23,9 @@ ThemeData createLightTheme() {
         ),
       ),
     ),
+    progressIndicatorTheme: ProgressIndicatorThemeData(
+      color: AppColors.lightGreen,
+    )
   );
 }
 
@@ -37,7 +39,12 @@ TextTheme _baseTextTheme({required bool isDark}) {
         fontWeight: FontWeight.bold,
       ),
 
+
       // display
+      displaySmall: TextStyle(
+        fontSize: 12,
+        color: AppColors.dirtyGreen,
+      ),
       displayMedium: TextStyle(
         fontSize: 14,
         color: AppColors.dirtyGreen,

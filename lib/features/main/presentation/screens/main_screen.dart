@@ -9,9 +9,9 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
-    //   return const MainBodyDesktop();
-    // }
+    if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
+      return const MainBodyDesktop();
+    }
     return const MainBodyMobile();
   }
 }

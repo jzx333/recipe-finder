@@ -75,7 +75,7 @@ class _TagTile extends StatelessWidget {
         const SizedBox(height: 4),
         Text(
           text,
-          style: theme.textTheme.bodySmall,
+          style: theme.textTheme.displaySmall,
         )
       ],
     );

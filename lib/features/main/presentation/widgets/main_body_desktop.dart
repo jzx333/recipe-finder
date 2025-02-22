@@ -8,7 +8,7 @@ class MainBodyDesktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Column(
-      spacing: 10,
+      spacing: 30,
       children: [
         TopInfo(),
         Expanded(
