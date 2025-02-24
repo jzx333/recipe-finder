@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_finder_demo/core/domain/entities/tag_entity.dart';
 
 class TagList extends StatelessWidget {
-  const TagList({super.key});
+  const TagList({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,14 +1,14 @@
 class StepEntity {
-  final int id;
+  final int number;
   final String step;
 
   const StepEntity({
-    required this.id,
+    required this.number,
     required this.step,
   });
 
   @override
   String toString() {
-    return 'StepEntity{id: $id, step: $step}';
+    return 'StepEntity{id: $number, step: $step}';
   }
 }

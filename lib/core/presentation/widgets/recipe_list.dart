@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_finder_demo/core/domain/entities/recipe_details_entity.dart';
+import 'package:recipe_finder_demo/core/domain/entities/recipe_preview_entity.dart';
 import 'package:recipe_finder_demo/core/presentation/widgets/recipe_list_tile.dart';
 import 'package:recipe_finder_demo/core/themes/themes.dart';
 
-final recipes = [
+final recipes = <RecipePreviewEntity>[
+  RecipePreviewEntity(
+    id: 1,
+    name: "name",
+    time: "time",
+    budget: "budget",
+    tags: [],
+    imgSrc: "imgSrc",
+  ),
 //   const RecipeEntity(name: "blini", tags: ["asdlf", "sldfj"]),
 //   const RecipeEntity(name: "lapsha", tags: ["lyti", "haip"]),
 //   const RecipeEntity(name: "yaic", tags: ["sometag"]),

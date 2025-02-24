@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_finder_demo/core/domain/entities/recipe_details_entity.dart';
+import 'package:recipe_finder_demo/core/domain/entities/recipe_preview_entity.dart';
 import 'package:recipe_finder_demo/core/presentation/widgets/small_tag.dart';
 
 class RecipeListTile extends StatelessWidget {
   const RecipeListTile({super.key, required this.recipe});
 
-  final RecipeDetailsEntity recipe;
+  final RecipePreviewEntity recipe;
 
   @override
   Widget build(BuildContext context) {
