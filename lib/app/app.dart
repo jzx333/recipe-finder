@@ -11,9 +11,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       theme: createLightTheme(),
       scrollBehavior: CustomScrollBehavior(),
-      home: const Scaffold(
-        body: MainScreen(),
-      ),
+      home: const MainScreen(),
     );
   }
 }

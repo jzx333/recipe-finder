@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_finder_demo/core/domain/entities/tag_entity.dart';
 
 class SmallTag extends StatelessWidget {
-  const SmallTag({super.key, required this.text});
+  const SmallTag({super.key, required this.tag});
 
-  final String text;
+  final TagEntity tag;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class SmallTag extends StatelessWidget {
         borderRadius: BorderRadius.circular(4),
       ),
       child: Text(
-        text,
+        tag.name,
         style: theme.textTheme.bodySmall,
         overflow: TextOverflow.ellipsis,
       ),

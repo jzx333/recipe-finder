@@ -4,7 +4,10 @@ import 'package:recipe_finder_demo/core/domain/entities/tag_entity.dart';
 class TagList extends StatelessWidget {
   const TagList({
     super.key,
+    required this.tags,
   });
+
+  final List<TagEntity> tags;
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +23,13 @@ class TagList extends StatelessWidget {
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        itemCount: 8,
+        itemCount: tags.length,
         shrinkWrap: true,
         itemBuilder: (context, index) {
+          final tag = tags[index];
           return _TagTile(
             isSelected: index == 0,
-            text: "Жареное",
+            tag: tag,
             onTap: () {},
           );
         },
@@ -40,15 +44,13 @@ class TagList extends StatelessWidget {
 class _TagTile extends StatelessWidget {
   const _TagTile({
     required this.isSelected,
-    required this.text,
+    required this.tag,
     required this.onTap,
   });
 
   final bool isSelected;
-  final String text;
+  final TagEntity tag;
   final VoidCallback onTap;
-
-  // final String asset;
 
   @override
   Widget build(BuildContext context) {
@@ -71,14 +73,21 @@ class _TagTile extends StatelessWidget {
                     isSelected ? theme.primaryColor : theme.colorScheme.outline,
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: const Icon(Icons.ac_unit),
+              child: Center(
+                child: Text(
+                  tag.emoji,
+                  style: TextStyle(fontSize: 30),
+                ),
+              ),
             ),
           ),
         ),
         const SizedBox(height: 4),
-        Text(
-          text,
-          style: theme.textTheme.displaySmall,
+        Center(
+          child: Text(
+            tag.name,
+            style: theme.textTheme.displaySmall,
+          ),
         )
       ],
     );

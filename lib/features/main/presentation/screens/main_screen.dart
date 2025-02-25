@@ -14,9 +14,11 @@ class MainScreen extends StatelessWidget {
     // if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
     //   return const MainBodyDesktop();
     // }
-    return ChangeNotifierProvider(
-      create: (context) => MainNotifier()..init(),
-      child: const MainBodyMobile(),
+    return Scaffold(
+      body: ChangeNotifierProvider(
+        create: (context) => MainNotifier()..init(),
+        child: const MainBodyMobile(),
+      ),
     );
   }
 }

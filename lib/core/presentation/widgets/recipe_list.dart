@@ -4,35 +4,19 @@ import 'package:recipe_finder_demo/core/domain/entities/recipe_preview_entity.da
 import 'package:recipe_finder_demo/core/presentation/widgets/recipe_list_tile.dart';
 import 'package:recipe_finder_demo/core/themes/themes.dart';
 
-final recipes = <RecipePreviewEntity>[
-  RecipePreviewEntity(
-    id: 1,
-    name: "name",
-    time: "time",
-    budget: "budget",
-    tags: [],
-    imgSrc: "imgSrc",
-  ),
-//   const RecipeEntity(name: "blini", tags: ["asdlf", "sldfj"]),
-//   const RecipeEntity(name: "lapsha", tags: ["lyti", "haip"]),
-//   const RecipeEntity(name: "yaic", tags: ["sometag"]),
-//   const RecipeEntity(name: "blini", tags: ["asdlf", "sldfj"]),
-//   const RecipeEntity(name: "lapsha", tags: ["lyti", "haip"]),
-//   const RecipeEntity(name: "yaic", tags: ["sometag"]),
-//   const RecipeEntity(name: "blini", tags: ["asdlf", "sldfj"]),
-//   const RecipeEntity(name: "lapsha", tags: ["lyti", "haip"]),
-//   const RecipeEntity(name: "yaic", tags: ["sometag"]),
-];
-
 class RecipeList extends StatelessWidget {
   const RecipeList({
     super.key,
     required this.borderRadius,
     this.scrollController,
+    required this.recipes,
+    required this.onRecipePressed,
   });
 
   final double borderRadius;
   final ScrollController? scrollController;
+  final List<RecipePreviewEntity> recipes;
+  final Function(RecipePreviewEntity recipe) onRecipePressed;
 
   @override
   Widget build(BuildContext context) {
@@ -59,8 +43,12 @@ class RecipeList extends StatelessWidget {
         controller: scrollController,
         itemCount: recipes.length,
         itemBuilder: (context, index) {
+          final recipe = recipes[index];
           return RecipeListTile(
             recipe: recipes[index],
+            onTap: () {
+              onRecipePressed(recipe);
+            },
           );
         },
       ),

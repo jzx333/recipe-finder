@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_finder_demo/core/domain/entities/tag_entity.dart';
+import 'package:recipe_finder_demo/core/domain/repositories/recipe_repository.dart';
 import 'package:recipe_finder_demo/core/themes/themes.dart';
+import 'package:recipe_finder_demo/di.dart';
 import 'package:recipe_finder_demo/features/main/presentation/widgets/main_search_button.dart';
 import 'package:recipe_finder_demo/features/main/presentation/widgets/main_tag_button.dart';
 import 'package:recipe_finder_demo/features/main/presentation/widgets/tag_list.dart';
 
 class TopInfo extends StatelessWidget {
-  const TopInfo({super.key});
+  const TopInfo({
+    super.key,
+    required this.tags,
+  });
 
   static const height = 270.0;
+
+  final List<TagEntity> tags;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +35,18 @@ class TopInfo extends StatelessWidget {
               ),
               MainTagButton(
                 isSelected: false,
-                onPressed: () {},
+                onPressed: () async {
+                  final rep = getIt<RecipeRepository>();
+
+                  final r = await rep.getTags();
+                  print(r.tags);
+
+                  final previews = await rep.getRecipePreviews();
+                  print(previews);
+
+                  final details = await rep.getRecipeDetails();
+                  print(details);
+                },
                 text: "Обед",
               ),
               MainTagButton(
@@ -38,7 +57,7 @@ class TopInfo extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 8),
-          const TagList()
+          TagList(tags: tags),
         ],
       ),
     );

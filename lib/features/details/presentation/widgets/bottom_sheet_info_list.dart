@@ -1,26 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_finder_demo/core/domain/entities/recipe_preview_entity.dart';
-import 'package:recipe_finder_demo/core/presentation/widgets/recipe_list.dart';
 import 'package:recipe_finder_demo/core/presentation/widgets/scroll_sheet_fab.dart';
+import 'package:recipe_finder_demo/features/details/presentation/widgets/info_list.dart';
 
-/// Use in stack widget!
-class BottomSheetList extends StatefulWidget {
-  const BottomSheetList({
+class BottomSheetInfoList extends StatefulWidget {
+  const BottomSheetInfoList({
     super.key,
     required this.topPadding,
-    required this.recipes,
-    required this.onRecipePressed,
+    required this.infoWidget,
   });
 
   final double topPadding;
-  final List<RecipePreviewEntity> recipes;
-  final Function(RecipePreviewEntity) onRecipePressed;
+  final Widget infoWidget;
 
   @override
-  State<BottomSheetList> createState() => _BottomSheetListState();
+  State<BottomSheetInfoList> createState() => _BottomSheetInfoListState();
 }
 
-class _BottomSheetListState extends State<BottomSheetList> {
+class _BottomSheetInfoListState extends State<BottomSheetInfoList> {
   double _borderRadius = 28;
   var _isScrollStart = true;
   late ScrollController _scrollController;
@@ -53,11 +49,10 @@ class _BottomSheetListState extends State<BottomSheetList> {
             _scrollController = scrollController;
             return NotificationListener<ScrollNotification>(
               onNotification: _onScrollNotification,
-              child: RecipeList(
+              child: InfoList(
                 borderRadius: _borderRadius,
+                info: widget.infoWidget,
                 scrollController: scrollController,
-                recipes: widget.recipes,
-                onRecipePressed: widget.onRecipePressed,
               ),
             );
           },

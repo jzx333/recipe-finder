@@ -23,7 +23,7 @@ ThemeData createLightTheme() {
         ),
       ),
     ),
-    progressIndicatorTheme: ProgressIndicatorThemeData(
+    progressIndicatorTheme: const ProgressIndicatorThemeData(
       color: AppColors.lightGreen,
     )
   );
@@ -38,6 +38,10 @@ TextTheme _baseTextTheme({required bool isDark}) {
         fontSize: 20,
         fontWeight: FontWeight.bold,
       ),
+      titleLarge: TextStyle(
+        fontSize: 36,
+        fontWeight: FontWeight.bold,
+      ),
 
 
       // display
@@ -47,6 +51,10 @@ TextTheme _baseTextTheme({required bool isDark}) {
       ),
       displayMedium: TextStyle(
         fontSize: 14,
+        color: AppColors.dirtyGreen,
+      ),
+      displayLarge: TextStyle(
+        fontSize: 24,
         color: AppColors.dirtyGreen,
       ),
 

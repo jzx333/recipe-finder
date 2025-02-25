@@ -3,9 +3,14 @@ import 'package:recipe_finder_demo/core/domain/entities/recipe_preview_entity.da
 import 'package:recipe_finder_demo/core/presentation/widgets/small_tag.dart';
 
 class RecipeListTile extends StatelessWidget {
-  const RecipeListTile({super.key, required this.recipe});
+  const RecipeListTile({
+    super.key,
+    required this.recipe,
+    required this.onTap,
+  });
 
   final RecipePreviewEntity recipe;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +19,7 @@ class RecipeListTile extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         borderRadius: BorderRadius.circular(33),
-        onTap: () {},
+        onTap: onTap,
         child: Ink(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,7 +35,7 @@ class RecipeListTile extends StatelessWidget {
                     alignment: Alignment.center,
                     children: [
                       Image.network(
-                        "https://prostokvashino.ru/upload/resize_cache/iblock/d62/800_800_0/d6269fa359b8595e632183c2c267c4ec.jpg",
+                        recipe.imgSrc,
                         width: double.infinity,
                         height: 200,
                         fit: BoxFit.cover,
@@ -61,18 +66,19 @@ class RecipeListTile extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: [
-                          Text("Блины", style: theme.textTheme.titleMedium),
+                          Text(recipe.name, style: theme.textTheme.titleMedium),
                           const SizedBox(width: 10),
-                          const SmallTag(text: "Из муки"),
-                          const SizedBox(width: 6),
-                          const SmallTag(text: "Жаренное"),
+                          for (final tag in recipe.tags) ...[
+                            SmallTag(tag: tag),
+                            const SizedBox(width: 6),
+                          ]
                         ],
                       ),
                     ),
                     Opacity(
                       opacity: 0.7,
                       child: Text(
-                        "Время приготовления ~30 минут",
+                        "Время приготовления ~${recipe.time} минут",
                         style: theme.textTheme.displayMedium,
                       ),
                     )
