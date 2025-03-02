@@ -10,11 +10,13 @@ class BottomSheetList extends StatefulWidget {
     required this.topPadding,
     required this.recipes,
     required this.onRecipePressed,
+    required this.onRefresh,
   });
 
   final double topPadding;
   final List<RecipePreviewEntity> recipes;
   final Function(RecipePreviewEntity) onRecipePressed;
+  final RefreshCallback onRefresh;
 
   @override
   State<BottomSheetList> createState() => _BottomSheetListState();
@@ -58,6 +60,7 @@ class _BottomSheetListState extends State<BottomSheetList> {
                 scrollController: scrollController,
                 recipes: widget.recipes,
                 onRecipePressed: widget.onRecipePressed,
+                onRefresh: widget.onRefresh,
               ),
             );
           },

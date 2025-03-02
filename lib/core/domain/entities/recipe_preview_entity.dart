@@ -3,8 +3,8 @@ import 'package:recipe_finder_demo/core/domain/entities/tag_entity.dart';
 class RecipePreviewEntity {
   final int id;
   final String name;
-  final String time;
-  final String budget;
+  final int time;
+  final int budget;
   final List<TagEntity> tags;
   final String imgSrc;
 

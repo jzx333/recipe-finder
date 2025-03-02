@@ -8,7 +8,8 @@ abstract interface class RecipeRepository {
   Future<({List<RecipePreviewEntity> recipePreviews, Object? err})>
       getRecipePreviews();
 
-  Future<({RecipeDetailsEntity? recipeDetails, Object? err})> getRecipeDetails();
+  Future<({RecipeDetailsEntity? recipeDetails, Object? err})> getRecipeDetails(
+      {required int id});
 
   void dispose();
 }

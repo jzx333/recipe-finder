@@ -35,18 +35,7 @@ class TopInfo extends StatelessWidget {
               ),
               MainTagButton(
                 isSelected: false,
-                onPressed: () async {
-                  final rep = getIt<RecipeRepository>();
-
-                  final r = await rep.getTags();
-                  print(r.tags);
-
-                  final previews = await rep.getRecipePreviews();
-                  print(previews);
-
-                  final details = await rep.getRecipeDetails();
-                  print(details);
-                },
+                onPressed: () async {},
                 text: "Обед",
               ),
               MainTagButton(

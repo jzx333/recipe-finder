@@ -9,6 +9,13 @@ class MainNotifier extends ChangeNotifier {
   final _recipeRepository = getIt<RecipeRepository>();
 
   void init() async {
+    await refresh();
+  }
+
+  Future<void> refresh() async {
+    // state = MainStateLoading();
+    // notifyListeners();
+
     final tagsResult = await _recipeRepository.getTags();
     final recipesResult = await _recipeRepository.getRecipePreviews();
 

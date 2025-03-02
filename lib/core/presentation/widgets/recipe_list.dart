@@ -11,12 +11,14 @@ class RecipeList extends StatelessWidget {
     this.scrollController,
     required this.recipes,
     required this.onRecipePressed,
+    required this.onRefresh,
   });
 
   final double borderRadius;
   final ScrollController? scrollController;
   final List<RecipePreviewEntity> recipes;
   final Function(RecipePreviewEntity recipe) onRecipePressed;
+  final RefreshCallback onRefresh;
 
   @override
   Widget build(BuildContext context) {
@@ -29,28 +31,32 @@ class RecipeList extends StatelessWidget {
           top: Radius.circular(borderRadius),
         ),
       ),
-      child: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 450,
-          crossAxisSpacing: 30,
-          mainAxisSpacing: 30,
-          mainAxisExtent: 260,
+      child: RefreshIndicator(
+        onRefresh: onRefresh,
+        color: theme.primaryColor,
+        child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: 450,
+            crossAxisSpacing: 30,
+            mainAxisSpacing: 30,
+            mainAxisExtent: 260,
+          ),
+          padding: EdgeInsets.symmetric(
+            vertical: 20,
+            horizontal: theme.horizontalPadding,
+          ),
+          controller: scrollController,
+          itemCount: recipes.length,
+          itemBuilder: (context, index) {
+            final recipe = recipes[index];
+            return RecipeListTile(
+              recipe: recipes[index],
+              onTap: () {
+                onRecipePressed(recipe);
+              },
+            );
+          },
         ),
-        padding: EdgeInsets.symmetric(
-          vertical: 20,
-          horizontal: theme.horizontalPadding,
-        ),
-        controller: scrollController,
-        itemCount: recipes.length,
-        itemBuilder: (context, index) {
-          final recipe = recipes[index];
-          return RecipeListTile(
-            recipe: recipes[index],
-            onTap: () {
-              onRecipePressed(recipe);
-            },
-          );
-        },
       ),
     );
   }

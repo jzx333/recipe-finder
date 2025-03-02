@@ -42,7 +42,7 @@ class _StepTile extends StatelessWidget {
             borderRadius: BorderRadius.circular(100),
           ),
           child: Text(
-            "Шаг ${step.number}",
+            "Шаг ${step.step}",
             style: theme.textTheme.bodyMedium?.copyWith(
               fontWeight: FontWeight.normal,
             ),
@@ -52,7 +52,7 @@ class _StepTile extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 10),
           child: Text(
-            step.step,
+            step.text,
             style: theme.textTheme.bodyMedium?.copyWith(
               fontWeight: FontWeight.normal,
               fontSize: 16,

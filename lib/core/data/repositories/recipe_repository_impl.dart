@@ -30,8 +30,8 @@ class RecipeRepositoryImpl implements RecipeRepository {
 
   @override
   Future<({RecipeDetailsEntity? recipeDetails, Object? err})>
-      getRecipeDetails() async {
-    final r = await recipeDataSource.getRecipeDetails();
+      getRecipeDetails({required int id}) async {
+    final r = await recipeDataSource.getRecipeDetails(id: id);
     return (
       recipeDetails: r.recipeDetails?.toEntity(),
       err: r.err,

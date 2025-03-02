@@ -24,8 +24,9 @@ ThemeData createLightTheme() {
       ),
     ),
     progressIndicatorTheme: const ProgressIndicatorThemeData(
-      color: AppColors.lightGreen,
-    )
+      color: Colors.white,
+    ),
+
   );
 }
 

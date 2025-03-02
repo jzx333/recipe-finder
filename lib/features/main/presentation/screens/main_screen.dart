@@ -11,13 +11,17 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
-    //   return const MainBodyDesktop();
-    // }
     return Scaffold(
       body: ChangeNotifierProvider(
         create: (context) => MainNotifier()..init(),
-        child: const MainBodyMobile(),
+        child: Builder(
+          builder: (context) {
+            if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
+              return const MainBodyDesktop();
+            }
+            return const MainBodyMobile();
+          },
+        ),
       ),
     );
   }

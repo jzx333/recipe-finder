@@ -5,19 +5,19 @@ part 'step_model.g.dart';
 
 @JsonSerializable()
 class StepModel {
-  @JsonKey(name: "id")
-  final int number;
-
   @JsonKey(name: "step")
-  final String step;
+  final int step;
+
+  @JsonKey(name: "text")
+  final String text;
 
   const StepModel({
-    required this.number,
     required this.step,
+    required this.text,
   });
 
   StepEntity toEntity() {
-    return StepEntity(number: number, step: step);
+    return StepEntity(step: step, text: text);
   }
 
   factory StepModel.fromJson(Map<String, dynamic> json) =>

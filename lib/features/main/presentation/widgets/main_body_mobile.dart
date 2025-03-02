@@ -11,11 +11,12 @@ class MainBodyMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mainNotifier = context.read<MainNotifier>();
     return Consumer<MainNotifier>(
       builder: (context, state, child) {
         return switch (state.state) {
           MainStateLoading() => const Center(
-              child: CircularProgressIndicator(color: Colors.red),
+              child: CircularProgressIndicator(),
             ),
           MainStateError s => Center(
               child: Text("Error ${s.err}"),
@@ -29,6 +30,7 @@ class MainBodyMobile extends StatelessWidget {
                   child: TopInfo(tags: s.tags),
                 ),
                 BottomSheetList(
+                  onRefresh: mainNotifier.refresh,
                   topPadding: TopInfo.height,
                   recipes: s.recipes,
                   onRecipePressed: (recipe) {

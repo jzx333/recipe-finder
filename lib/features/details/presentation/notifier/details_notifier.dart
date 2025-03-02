@@ -16,7 +16,8 @@ class DetailsNotifier extends ChangeNotifier {
   final _recipeRepository = getIt<RecipeRepository>();
 
   void init() async {
-    final recipeResult = await _recipeRepository.getRecipeDetails();
+    final recipeResult =
+        await _recipeRepository.getRecipeDetails(id: _recipePreview.id);
 
     if (recipeResult.err != null || recipeResult.recipeDetails == null) {
       state = DetailsStateError(err: recipeResult.err);

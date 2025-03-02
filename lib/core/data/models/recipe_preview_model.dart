@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:recipe_finder_demo/core/data/models/tag_model.dart';
 import 'package:recipe_finder_demo/core/domain/entities/recipe_preview_entity.dart';
+import 'package:recipe_finder_demo/core/domain/entities/tag_entity.dart';
 
 part 'recipe_preview_model.g.dart';
 
@@ -13,13 +14,13 @@ class RecipePreviewModel {
   final String name;
 
   @JsonKey(name: "time")
-  final String time;
+  final int time;
 
   @JsonKey(name: "budget")
-  final String budget;
+  final int budget;
 
   @JsonKey(name: "tags")
-  final List<TagModel> tags;
+  final String tags;
 
   @JsonKey(name: "imgsrc")
   final String imgSrc;
@@ -39,7 +40,7 @@ class RecipePreviewModel {
       name: name,
       time: time,
       budget: budget,
-      tags: tags.map((tag) => tag.toEntity()).toList(),
+      tags: tags.split(", ").map((name) => TagEntity(id: 0, name: name, emoji: "")).toList(),
       imgSrc: imgSrc,
     );
   }

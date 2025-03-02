@@ -17,7 +17,7 @@ class DetailsBody extends StatelessWidget {
       builder: (context, state, child) {
         return switch (state.state) {
           DetailsStateLoading s => const Center(
-              child: CircularProgressIndicator(color: Colors.red),
+              child: CircularProgressIndicator(),
             ),
           DetailsStateError s => Center(
               child: Text("Error ${s.err}"),
@@ -65,13 +65,13 @@ class DetailsBody extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "Стоимость ~${s.recipe.budget}",
+                        "Стоимость ~${s.recipe.budget} руб.",
                         style: theme.textTheme.bodyMedium?.copyWith(
                           fontWeight: FontWeight.normal,
                         ),
                       ),
                       const SizedBox(height: 10),
-                      Text("Ингридиенты", style: theme.textTheme.displayLarge),
+                      Text("Ингредиенты", style: theme.textTheme.displayLarge),
                       const SizedBox(height: 8),
                       IngredientsList(ingredients: s.recipe.ingredients),
                       const SizedBox(height: 10),

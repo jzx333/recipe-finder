@@ -5,6 +5,9 @@ part 'tag_model.g.dart';
 
 @JsonSerializable()
 class TagModel {
+  @JsonKey(name: "id")
+  final int id;
+
   @JsonKey(name: "name")
   final String name;
 
@@ -12,12 +15,14 @@ class TagModel {
   final String emoji;
 
   const TagModel({
+    required this.id,
     required this.name,
     required this.emoji,
   });
 
   TagEntity toEntity() {
     return TagEntity(
+      id: id,
       name: name,
       emoji: emoji,
     );

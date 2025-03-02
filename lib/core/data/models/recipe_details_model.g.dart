@@ -10,12 +10,10 @@ RecipeDetailsModel _$RecipeDetailsModelFromJson(Map<String, dynamic> json) =>
     RecipeDetailsModel(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
-      calories: json['calories'] as String,
-      time: json['time'] as String,
-      budget: json['budget'] as String,
-      tags: (json['tags'] as List<dynamic>)
-          .map((e) => TagModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      calories: (json['calories'] as num).toInt(),
+      time: (json['time'] as num).toInt(),
+      budget: (json['budget'] as num).toInt(),
+      tags: json['tags'] as String,
       ingredients: (json['ingredients'] as List<dynamic>)
           .map((e) => IngredientModel.fromJson(e as Map<String, dynamic>))
           .toList(),
