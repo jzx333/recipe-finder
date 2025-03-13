@@ -24,7 +24,7 @@ class MainBodyDesktop extends StatelessWidget {
           MainStateLoaded s => Column(
               spacing: 30,
               children: [
-                TopInfo(tags: s.tags),
+                const TopInfo(),
                 Expanded(
                   child: RecipeList(
                     onRefresh: mainNotifier.refresh,

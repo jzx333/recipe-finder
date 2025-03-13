@@ -23,11 +23,11 @@ class MainBodyMobile extends StatelessWidget {
             ),
           MainStateLoaded s => Stack(
               children: [
-                Positioned(
+                const Positioned(
                   left: 0,
                   right: 0,
                   top: 0,
-                  child: TopInfo(tags: s.tags),
+                  child: TopInfo(),
                 ),
                 BottomSheetList(
                   onRefresh: mainNotifier.refresh,

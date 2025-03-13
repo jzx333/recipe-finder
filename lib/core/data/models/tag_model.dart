@@ -28,6 +28,14 @@ class TagModel {
     );
   }
 
+  factory TagModel.fromEntity(TagEntity entity) {
+    return TagModel(
+      id: entity.id,
+      name: entity.name,
+      emoji: entity.emoji,
+    );
+  }
+
   factory TagModel.fromJson(Map<String, dynamic> json) =>
       _$TagModelFromJson(json);
 }

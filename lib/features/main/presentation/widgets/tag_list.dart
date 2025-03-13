@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:recipe_finder_demo/core/domain/entities/tag_entity.dart';
+import 'package:recipe_finder_demo/features/main/presentation/notifier/main_notifier.dart';
+import 'package:recipe_finder_demo/features/main/presentation/notifier/main_state.dart';
 
 class TagList extends StatelessWidget {
   const TagList({
     super.key,
-    required this.tags,
   });
-
-  final List<TagEntity> tags;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final mainNotifier = context.watch<MainNotifier>();
+    assert(mainNotifier.state is MainStateLoaded, "can not show tags in not loaded state");
+
+    final tags = (mainNotifier.state as MainStateLoaded).tags;
+    final filterTags = (mainNotifier.state as MainStateLoaded).filterTags;
+
     return Container(
       height: 100,
       alignment: Alignment.center,
@@ -28,9 +34,11 @@ class TagList extends StatelessWidget {
         itemBuilder: (context, index) {
           final tag = tags[index];
           return _TagTile(
-            isSelected: index == 0,
+            isSelected: filterTags.contains(tag),
             tag: tag,
-            onTap: () {},
+            onTap: () {
+              mainNotifier.toggleFilterTag(tag);
+            },
           );
         },
         separatorBuilder: (context, index) {

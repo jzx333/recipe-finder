@@ -16,9 +16,9 @@ class MainScreen extends StatelessWidget {
         create: (context) => MainNotifier()..init(),
         child: Builder(
           builder: (context) {
-            if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
-              return const MainBodyDesktop();
-            }
+            // if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
+            //   return const MainBodyDesktop();
+            // }
             return const MainBodyMobile();
           },
         ),

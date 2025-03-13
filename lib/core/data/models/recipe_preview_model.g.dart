@@ -12,7 +12,9 @@ RecipePreviewModel _$RecipePreviewModelFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       time: (json['time'] as num).toInt(),
       budget: (json['budget'] as num).toInt(),
-      tags: json['tags'] as String,
+      tags: (json['tags'] as List<dynamic>)
+          .map((e) => TagModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
       imgSrc: json['imgsrc'] as String,
     );
 

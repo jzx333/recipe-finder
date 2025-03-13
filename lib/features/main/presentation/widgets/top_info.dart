@@ -10,12 +10,9 @@ import 'package:recipe_finder_demo/features/main/presentation/widgets/tag_list.d
 class TopInfo extends StatelessWidget {
   const TopInfo({
     super.key,
-    required this.tags,
   });
 
   static const height = 270.0;
-
-  final List<TagEntity> tags;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +43,7 @@ class TopInfo extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 8),
-          TagList(tags: tags),
+          const TagList(),
         ],
       ),
     );

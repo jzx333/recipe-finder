@@ -10,9 +10,15 @@ abstract interface class RecipeDataSource {
   Future<({List<TagModel> tags, Object? err})> getTags();
 
   Future<({List<RecipePreviewModel> recipePreviews, Object? err})>
-      getRecipePreviews();
+      getRecipePreviews({
+    List<TagModel> filterTags,
+    String? name,
+    int? budget,
+  });
 
-  Future<({RecipeDetailsModel? recipeDetails, Object? err})> getRecipeDetails({required int id});
+  Future<({RecipeDetailsModel? recipeDetails, Object? err})> getRecipeDetails({
+    required int id,
+  });
 
   void dispose();
 }
@@ -38,8 +44,8 @@ class RecipeDataSourceImpl implements RecipeDataSource {
 
       // return (
       //   tags: [
-      //     const TagModel(name: "Жареное", emoji: "🔥"),
-      //     const TagModel(name: "яйца", emoji: "🥚")
+      //     const TagModel(id: 1, name: "Жареное", emoji: "🔥"),
+      //     const TagModel(id: 2, name: "яйца", emoji: "🥚")
       //   ],
       //   err: null,
       // );
@@ -52,22 +58,53 @@ class RecipeDataSourceImpl implements RecipeDataSource {
 
   @override
   Future<({List<RecipePreviewModel> recipePreviews, Object? err})>
-      getRecipePreviews() async {
+      getRecipePreviews({
+    List<TagModel>? filterTags,
+    String? name,
+    int? budget,
+  }) async {
     log("getRecipePreviews", name: runtimeType.toString());
     try {
-      final response = await client.get(Uri.parse("$address/previews"));
+      final queryParams = <String, dynamic>{};
+
+      if (name != null) {
+        queryParams["name"] = name;
+      }
+
+      if (budget != null) {
+        queryParams["budget"] = budget.toString();
+      }
+
+      final uri = Uri.http(
+        '100.78.133.102:8080',
+        '/previews',
+        queryParams,
+      );
+
+      final queryTags = [
+        for (final tag in filterTags ?? [])
+          'tag=${Uri.encodeQueryComponent(tag.id.toString())}'
+      ].join('&');
+
+      var path =
+          "${uri.toString()}${queryTags.isNotEmpty ? '&$queryTags' : ''}";
+
+      //return (recipePreviews: <RecipePreviewModel>[], err: null);
+
+      final response = await client.get(Uri.parse(path));
       final list = (jsonDecode(response.body) as List)
           .map((json) => RecipePreviewModel.fromJson(json))
           .toList();
       return (recipePreviews: list, err: null);
+
       // return (
       //   recipePreviews: [
       //     const RecipePreviewModel(
       //       id: 1,
-      //       name: "дошик",
-      //       time: "5",
-      //       budget: "30 руб.",
-      //       tags: "Жареное",
+      //       name: "Паста карбонара",
+      //       time: 5,
+      //       budget: 60,
+      //       tags: "Быстрое",
       //       imgSrc:
       //           "https://upload.wikimedia.org/wikipedia/ru/4/49/%D0%94%D0%BE%D1%88%D0%B8%D1%80%D0%B0%D0%BA_%D0%BB%D0%B0%D0%BF%D1%88%D0%B0.jpg",
       //     ),
@@ -82,8 +119,8 @@ class RecipeDataSourceImpl implements RecipeDataSource {
   }
 
   @override
-  Future<({RecipeDetailsModel? recipeDetails, Object? err})>
-      getRecipeDetails({required int id}) async {
+  Future<({RecipeDetailsModel? recipeDetails, Object? err})> getRecipeDetails(
+      {required int id}) async {
     log("getRecipeDetails", name: runtimeType.toString());
     try {
       final response = await client.get(Uri.parse("$address/previews/$id"));

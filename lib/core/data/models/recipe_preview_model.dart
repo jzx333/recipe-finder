@@ -20,7 +20,7 @@ class RecipePreviewModel {
   final int budget;
 
   @JsonKey(name: "tags")
-  final String tags;
+  final List<TagModel> tags;
 
   @JsonKey(name: "imgsrc")
   final String imgSrc;
@@ -40,7 +40,7 @@ class RecipePreviewModel {
       name: name,
       time: time,
       budget: budget,
-      tags: tags.split(", ").map((name) => TagEntity(id: 0, name: name, emoji: "")).toList(),
+      tags: tags.map((m) => m.toEntity()).toList(),
       imgSrc: imgSrc,
     );
   }

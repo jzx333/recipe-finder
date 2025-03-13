@@ -25,7 +25,7 @@ class RecipeDetailsModel {
   final int budget;
 
   @JsonKey(name: "tags")
-  final String tags;
+  final List<TagModel> tags;
 
   @JsonKey(name: "ingredients")
   final List<IngredientModel> ingredients;
@@ -55,10 +55,7 @@ class RecipeDetailsModel {
       calories: calories,
       time: time,
       budget: budget,
-      tags: tags
-          .split(", ")
-          .map((name) => TagEntity(id: 0, name: name, emoji: ""))
-          .toList(),
+      tags: tags.map((m) => m.toEntity()).toList(),
       ingredients: ingredients.map((ing) => ing.toEntity()).toList(),
       steps: steps.map((step) => step.toEntity()).toList(),
       imgSrc: imgSrc,
