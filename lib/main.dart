@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_finder_demo/core/domain/repositories/recipe_repository.dart';
 import 'package:recipe_finder_demo/di.dart';
+
 import 'app/app.dart';
 
 void main() async {

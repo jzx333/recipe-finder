@@ -26,11 +26,16 @@ abstract interface class RecipeDataSource {
 class RecipeDataSourceImpl implements RecipeDataSource {
   final http.Client client;
 
-  final address = "http://100.78.133.102:8080";
+  final ip = "100.67.101.12";
+  final port = 8080;
 
-  const RecipeDataSourceImpl({
+  late final String address;
+
+  RecipeDataSourceImpl({
     required this.client,
-  });
+  }) {
+    address = "http://$ip:$port";
+  }
 
   @override
   Future<({List<TagModel> tags, Object? err})> getTags() async {
@@ -76,7 +81,7 @@ class RecipeDataSourceImpl implements RecipeDataSource {
       }
 
       final uri = Uri.http(
-        '100.78.133.102:8080',
+        '$ip:$port',
         '/previews',
         queryParams,
       );
