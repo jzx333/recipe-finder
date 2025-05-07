@@ -27,6 +27,11 @@ ThemeData createLightTheme() {
       color: Colors.white,
     ),
 
+    textSelectionTheme: TextSelectionThemeData(
+      selectionColor: AppColors.lightGreen.withValues(alpha: 0.5),
+      cursorColor: AppColors.lightGreen
+    )
+
   );
 }
 

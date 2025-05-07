@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MainSearchButton extends StatelessWidget {
-  const MainSearchButton({super.key});
+  const MainSearchButton({super.key, required this.onPressed});
+
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -19,15 +21,10 @@ class MainSearchButton extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           borderRadius: BorderRadius.circular(borderRadius),
-          onTap: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => SearchScreen()),
-            //);
-            print("POISK");
-          },
+          onTap: onPressed,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 19.0, vertical: 12.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 19.0, vertical: 12.0),
             child: Row(
               children: [
                 Opacity(

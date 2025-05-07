@@ -14,6 +14,8 @@ abstract interface class RecipeDataSource {
     List<TagModel> filterTags,
     String? name,
     int? budget,
+    int? calories,
+    int? time,
   });
 
   Future<({RecipeDetailsModel? recipeDetails, Object? err})> getRecipeDetails({
@@ -26,7 +28,7 @@ abstract interface class RecipeDataSource {
 class RecipeDataSourceImpl implements RecipeDataSource {
   final http.Client client;
 
-  final ip = "100.67.101.12";
+  final ip = "100.78.133.102";
   final port = 8080;
 
   late final String address;
@@ -67,6 +69,8 @@ class RecipeDataSourceImpl implements RecipeDataSource {
     List<TagModel>? filterTags,
     String? name,
     int? budget,
+    int? calories,
+    int? time,
   }) async {
     log("getRecipePreviews", name: runtimeType.toString());
     try {
@@ -78,6 +82,14 @@ class RecipeDataSourceImpl implements RecipeDataSource {
 
       if (budget != null) {
         queryParams["budget"] = budget.toString();
+      }
+
+      if (calories != null) {
+        queryParams["calories"] = calories.toString();
+      }
+
+      if (time != null) {
+        queryParams["time"] = time.toString();
       }
 
       final uri = Uri.http(

@@ -7,7 +7,7 @@ abstract interface class RecipeRepository {
 
   Future<({List<RecipePreviewEntity> recipePreviews, Object? err})>
       getRecipePreviews(
-          {List<TagEntity>? filterTags, String? name, int? budget});
+          {List<TagEntity>? filterTags, String? name, int? budget, int? calories, int? time});
 
   Future<({RecipeDetailsEntity? recipeDetails, Object? err})> getRecipeDetails(
       {required int id});

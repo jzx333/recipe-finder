@@ -3,6 +3,7 @@ import 'package:recipe_finder_demo/core/domain/entities/tag_entity.dart';
 import 'package:recipe_finder_demo/core/domain/repositories/recipe_repository.dart';
 import 'package:recipe_finder_demo/core/themes/themes.dart';
 import 'package:recipe_finder_demo/di.dart';
+import 'package:recipe_finder_demo/features/find/presentation/screens/find_screen.dart';
 import 'package:recipe_finder_demo/features/main/presentation/widgets/main_search_button.dart';
 import 'package:recipe_finder_demo/features/main/presentation/widgets/main_tag_button.dart';
 import 'package:recipe_finder_demo/features/main/presentation/widgets/tag_list.dart';
@@ -21,7 +22,13 @@ class TopInfo extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: theme.horizontalPadding),
       child: Column(
         children: [
-          const MainSearchButton(),
+          MainSearchButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                return const FindScreen();
+              }));
+            },
+          ),
           const SizedBox(height: 8.0),
           Row(
             children: [

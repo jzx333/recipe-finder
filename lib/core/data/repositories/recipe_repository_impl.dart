@@ -21,7 +21,7 @@ class RecipeRepositoryImpl implements RecipeRepository {
   @override
   Future<({List<RecipePreviewEntity> recipePreviews, Object? err})>
       getRecipePreviews(
-  {List<TagEntity>? filterTags, String? name, int? budget}) async {
+  {List<TagEntity>? filterTags, String? name, int? budget, int? calories, int? time}) async {
 
     final r = await recipeDataSource.getRecipePreviews(
       filterTags:  filterTags != null
@@ -29,6 +29,8 @@ class RecipeRepositoryImpl implements RecipeRepository {
           : [],
       name: name,
       budget: budget,
+      calories: calories,
+      time: time,
     );
 
     return (
